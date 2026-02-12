@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Event Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #b6c5dd;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        h1::before {
+            content: "📅 ";
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .box {
+            background: #f0f0f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .box1 {
+            width: 40%;
+        }
+
+        .box2 {
+            width: 60%;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        textarea {
+            height: 80px;
+            resize: none;
+        }
+
+        .btn-add {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background: #e0e0e0;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+        }
+
+        .events-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .event-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            width: calc(50% - 10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .event-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .event-card p {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .dom-section {
+            display: flex;
+            max-width: 900px;
+            margin: 20px auto 0;
+        }
+
+        .dom-box {
+            background: #f0f0f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        .dom-box input {
+            width: 250px;
+        }
+
+        .dom-box button {
+            padding: 12px 20px;
+            margin-left: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .dom-box ul {
+            margin-top: 20px;
+            list-style: none;
+        }
+
+        .dom-box li {
+            background: #fff;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dom-box li .remove-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .dom-box li .remove-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Smart Event Dashboard</h1>
+
+    <div class="container">
+        <div class="box box1">
+            <h2>Add New Event</h2>
+            <label>Event Name</label>
+            <input type="text" placeholder="Enter event name">
+            <label>Date</label>
+            <input type="date">
+            <label>Category</label>
+            <select>
+                <option>Workshop</option>
+                <option>Meeting</option>
+                <option>Conference</option>
+                <option>Other</option>
+            </select>
+            <label>Description</label>
+            <textarea placeholder="Event description"></textarea>
+            <button class="btn-add">Add Event</button>
+        </div>
+
+        <div class="box box2">
+            <h2>My Events</h2>
+            <div class="tabs">
+                <button class="tab active">All Events</button>
+                <button class="tab">Upcoming</button>
+                <button class="tab">Completed</button>
+            </div>
+            <div class="events-list">
+                <div class="event-card">
+                    <h3>Web Development Workshop</h3>
+                    <p>Category: Workshop</p>
+                    <p>Date: 20 Feb 2026</p>
+                </div>
+                <div class="event-card">
+                    <h3>Team Meeting</h3>
+                    <p>Category: Meeting</p>
+                    <p>Date: 25 Feb 2026</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dom-section">
+        <div class="dom-box">
+            <h2>DOM Manipulation Demo</h2>
+            <input type="text" id="elementName" placeholder="New Element Name">
+            <button onclick="addElement()">Add Element</button>
+            <ul id="elementList"></ul>
+        </div>
+    </div>
+
+    <script>
+        function addElement() {
+            const input = document.getElementById("elementName");
+            const value = input.value;
+
+            if (value === "") {
+                alert("Please enter an element name");
+                return;
+            }
+
+            const li = document.createElement("li");
+            
+            const span = document.createElement("span");
+            span.textContent = value;
+            li.appendChild(span);
+
+            const removeBtn = document.createElement("button");
+            removeBtn.textContent = "Remove";
+            removeBtn.className = "remove-btn";
+            removeBtn.onclick = function() {
+                li.remove();
+            };
+            li.appendChild(removeBtn);
+
+            document.getElementById("elementList").appendChild(li);
+            input.value = "";
+        }
+    </script>  
+    <script src="script.jss"> 
+     
+
+    </script>
+</body>
+</html>
